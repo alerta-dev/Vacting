@@ -429,7 +429,89 @@
     border-radius: 5px;
 }
         
-        /*BANNER LOCOCHON FIN*/
+/*BANNER LOCOCHON FIN*/
+        
+/*INSIGNIAS ROLES VERIGICADOS INICIO*/
+
+      /* Insignias de Verificación */
+.badge-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.badge {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    cursor: help;
+}
+
+.badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.badge-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.badge:hover .badge-tooltip {
+    opacity: 1;
+}
+
+.badge-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Badges en tarjeta pequeña */
+.profile-name-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile-card .badge {
+    width: 20px;
+    height: 20px;
+}
+
+/* Badges en perfil detallado */
+.detail-name-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.detail-name-wrapper .badge {
+    width: 32px;
+    height: 32px;
+}
+        
+/*INSIGNIAS ROLES VERIGICADOS FINAL*/
 
     </style>
 </head>
@@ -539,7 +621,17 @@
                         title: "Personaje Animado",
                         description: "Doblaje de personaje principal en serie animada"
                     }
-                ]
+                ],
+            badges: [
+            {
+                icon: "https://i.imgur.com/example1.png",
+                tooltip: "Actor de Doblaje Oficial"
+            },
+            {
+                icon: "https://i.imgur.com/example2.png",
+                tooltip: "Verificado por VoiceHub"
+            }
+        ],
             },
             // COPIAR DESDE AQUI
             {
@@ -636,8 +728,20 @@
                         <img src="${user.avatar}" alt="${user.name}" class="profile-avatar">
                     </div>
                     <div class="profile-content">
-                        <h3 class="profile-name">${user.name}</h3>
-                        <p class="profile-bio">${user.bio}</p>
+<div class="profile-name-wrapper">
+    <h3 class="profile-name">${user.name}</h3>
+    ${user.badges ? `
+        <div class="badge-container">
+            ${user.badges.map(badge => `
+                <span class="badge">
+                    <img src="${badge.icon}" alt="${badge.tooltip}">
+                    <span class="badge-tooltip">${badge.tooltip}</span>
+                </span>
+            `).join('')}
+        </div>
+    ` : ''}
+</div>
+                         <p class="profile-bio">${user.bio}</p>
                         <div class="profile-tags">
                             ${user.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join('')}
                         </div>
@@ -674,7 +778,19 @@
                     <img src="${user.avatar}" alt="${user.name}" class="detail-avatar">
                 </div>
                 <div class="detail-info">
-                    <h1 class="detail-name">${user.name}</h1>
+                    <div class="detail-name-wrapper">
+    <h1 class="detail-name">${user.name}</h1>
+    ${user.badges ? `
+        <div class="badge-container">
+            ${user.badges.map(badge => `
+                <span class="badge">
+                    <img src="${badge.icon}" alt="${badge.tooltip}">
+                    <span class="badge-tooltip">${badge.tooltip}</span>
+                </span>
+            `).join('')}
+        </div>
+    ` : ''}
+</div>
                     <p class="detail-bio">${user.bio}</p>
                     <div class="profile-tags">
                         ${user.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join('')}
