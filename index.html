@@ -899,6 +899,34 @@ function goToSlide(index) {
 
 // Cambiar slide cada 5 segundos
 setInterval(nextSlide, 5000);
+
+        // RECARGA SIN MENSAJES DE ERROR ABIR
+
+// Detectar y cargar perfil desde URL al cargar la página
+window.addEventListener('DOMContentLoaded', function() {
+    const path = window.location.pathname;
+    
+    // Si la URL es /c/nombre-usuario
+    if (path.startsWith('/c/')) {
+        const userName = path.replace('/c/', '').toLowerCase();
+        
+        // Buscar el usuario que coincida con el nombre en la URL
+        const user = users.find(u => {
+            const userSlug = u.name.toLowerCase().replace(/\s+/g, '');
+            return userSlug === userName;
+        });
+        
+        if (user) {
+            // Si encontramos el usuario, mostrar su perfil
+            showProfile(user.id);
+        } else {
+            // Si no existe, mostrar página de inicio
+            console.log('Usuario no encontrado, mostrando inicio');
+            showHome();
+        }
+    }
+});
+        
     </script>
 </body>
 </html>
