@@ -822,18 +822,19 @@ window.scrollTo(0, 0);
         }
 
         // Volver a home
-        // Volver a home
-function showHome() {
-    history.pushState({}, '', '/');
-document.getElementById('detailView').classList.add('hidden');
-document.getElementById('homeView').classList.remove('hidden');
-const bannerCarousel = document.querySelector('.banner-carousel');
-if (bannerCarousel) {
-    bannerCarousel.classList.remove('hidden');
-}
-window.scrollTo(0, 0);
-}
+// Volver a home
+        function showHome() {
+            history.pushState({}, '', '/');
+            document.getElementById('detailView').classList.add('hidden');
+            document.getElementById('homeView').classList.remove('hidden');
+            const bannerCarousel = document.querySelector('.banner-carousel');
+            if (bannerCarousel) {
+                bannerCarousel.classList.remove('hidden');
+            }
+            window.scrollTo(0, 0);
         }
+
+        // Manejar navegación con botones del navegador
 
         // Manejar navegación con botones del navegador
 window.addEventListener('popstate', function(event) {
