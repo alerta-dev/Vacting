@@ -808,31 +808,37 @@
             `;
 
             // Cambiar URL sin recargar la página
-            const userName = user.name.toLowerCase().replace(/\s+/g, '');
-            history.pushState({userId: user.id}, '', `/c/${userName}`);
-            
-            document.getElementById('homeView').classList.add('hidden');
-            document.getElementById('detailView').classList.remove('hidden');
-            window.scrollTo(0, 0);
+            // Cambiar URL sin recargar la página
+const userName = user.name.toLowerCase().replace(/\s+/g, '');
+history.pushState({userId: user.id}, '', `/c/${userName}`);
+
+document.getElementById('homeView').classList.add('hidden');
+document.getElementById('detailView').classList.remove('hidden');
+document.querySelector('.banner-carousel').classList.add('hidden');
+window.scrollTo(0, 0);
         }
 
         // Volver a home
-        function showHome() {
-            history.pushState({}, '', '/');
-            document.getElementById('detailView').classList.add('hidden');
-            document.getElementById('homeView').classList.remove('hidden');
-            window.scrollTo(0, 0);
+        // Volver a home
+function showHome() {
+    history.pushState({}, '', '/');
+    document.getElementById('detailView').classList.add('hidden');
+    document.getElementById('homeView').classList.remove('hidden');
+    document.querySelector('.banner-carousel').classList.remove('hidden');
+    window.scrollTo(0, 0);
+}
         }
 
         // Manejar navegación con botones del navegador
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.userId) {
-                showProfile(event.state.userId);
-            } else {
-                document.getElementById('detailView').classList.add('hidden');
-                document.getElementById('homeView').classList.remove('hidden');
-            }
-        });
+window.addEventListener('popstate', function(event) {
+    if (event.state && event.state.userId) {
+        showProfile(event.state.userId);
+    } else {
+        document.getElementById('detailView').classList.add('hidden');
+        document.getElementById('homeView').classList.remove('hidden');
+        document.querySelector('.banner-carousel').classList.remove('hidden');
+    }
+});
 
         // Event listeners para filtros
         document.querySelectorAll('.tag').forEach(tag => {
