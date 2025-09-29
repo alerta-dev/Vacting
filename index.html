@@ -578,7 +578,7 @@
 
             // Cambiar URL sin recargar la página
             const userName = user.name.toLowerCase().replace(/\s+/g, '');
-            history.pushState({userId: user.id}, '', `/voicehub.com/${userName}`);
+            history.pushState({userId: user.id}, '', `/Usuario/${userName}`);
             
             document.getElementById('homeView').classList.add('hidden');
             document.getElementById('detailView').classList.remove('hidden');
