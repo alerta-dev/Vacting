@@ -814,7 +814,10 @@ history.pushState({userId: user.id}, '', `/c/${userName}`);
 
 document.getElementById('homeView').classList.add('hidden');
 document.getElementById('detailView').classList.remove('hidden');
-document.querySelector('.banner-carousel').classList.add('hidden');
+const bannerCarousel = document.querySelector('.banner-carousel');
+if (bannerCarousel) {
+    bannerCarousel.classList.add('hidden');
+}
 window.scrollTo(0, 0);
         }
 
@@ -822,10 +825,13 @@ window.scrollTo(0, 0);
         // Volver a home
 function showHome() {
     history.pushState({}, '', '/');
-    document.getElementById('detailView').classList.add('hidden');
-    document.getElementById('homeView').classList.remove('hidden');
-    document.querySelector('.banner-carousel').classList.remove('hidden');
-    window.scrollTo(0, 0);
+document.getElementById('detailView').classList.add('hidden');
+document.getElementById('homeView').classList.remove('hidden');
+const bannerCarousel = document.querySelector('.banner-carousel');
+if (bannerCarousel) {
+    bannerCarousel.classList.remove('hidden');
+}
+window.scrollTo(0, 0);
 }
         }
 
@@ -833,11 +839,14 @@ function showHome() {
 window.addEventListener('popstate', function(event) {
     if (event.state && event.state.userId) {
         showProfile(event.state.userId);
-    } else {
-        document.getElementById('detailView').classList.add('hidden');
-        document.getElementById('homeView').classList.remove('hidden');
-        document.querySelector('.banner-carousel').classList.remove('hidden');
+   } else {
+    document.getElementById('detailView').classList.add('hidden');
+    document.getElementById('homeView').classList.remove('hidden');
+    const bannerCarousel = document.querySelector('.banner-carousel');
+    if (bannerCarousel) {
+        bannerCarousel.classList.remove('hidden');
     }
+}
 });
 
         // Event listeners para filtros
