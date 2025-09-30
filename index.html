@@ -186,10 +186,18 @@
         }
 
         .profile-bio {
-            color: #a0a0a0;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    /* Limitar a 3 líneas en las tarjetas */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    max-height: 4.5em; /* 3 líneas x 1.5 line-height */
+}
 
         .profile-tags {
             display: flex;
@@ -260,11 +268,15 @@
             margin-bottom: 1rem;
         }
 
-        .detail-bio {
-            font-size: 1.1rem;
-            color: #a0a0a0;
-            margin-bottom: 1.5rem;
-        }
+        /* Bio completa en el perfil detallado */
+.detail-bio {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    margin-bottom: 1.5rem;
+    /* Sin límite de líneas */
+    display: block;
+    line-height: 1.6;
+}
 
         .social-links {
             display: flex;
