@@ -741,7 +741,7 @@
 
             grid.innerHTML = filteredUsers.map(user => `
                 <div class="profile-card" onclick="showProfile(${user.id})">
-                    <div class="profile-banner" style="background: ${user.banner}">
+                    <div class="profile-banner" style="background: ${user.banner}; background-size: cover; background-position: center; background-repeat: no-repeat;">
                         <img src="${user.avatar}" alt="${user.name}" class="profile-avatar">
                     </div>
                     <div class="profile-content">
@@ -790,7 +790,7 @@
             `).join('');
 
             detail.innerHTML = `
-                <div class="detail-banner" style="background: ${user.banner}">
+                <div class="detail-banner" style="background: ${user.banner}; background-size: cover; background-position: center; background-repeat: no-repeat;">
                     <button class="back-button" onclick="showHome()">← Volver</button>
                     <img src="${user.avatar}" alt="${user.name}" class="detail-avatar">
                 </div>
