@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PortaLand - Portafolio de Doblaje</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>PortaLand</title>
     <style>
         * {
             margin: 0;
@@ -162,6 +163,9 @@
             height: 120px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .profile-avatar {
@@ -186,10 +190,20 @@
         }
 
         .profile-bio {
-            color: #a0a0a0;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    /* Limitar a 3 líneas en las tarjetas */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    max-height: 4.5em; /* 3 líneas x 1.5 line-height */
+    white-space: pre-line; /* AGREGA ESTA LÍNEA */
+
+}
 
         .profile-tags {
             display: flex;
@@ -220,6 +234,9 @@
             border-radius: 16px;
             position: relative;
             margin-bottom: 4rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .detail-avatar {
@@ -260,11 +277,16 @@
             margin-bottom: 1rem;
         }
 
-        .detail-bio {
-            font-size: 1.1rem;
-            color: #a0a0a0;
-            margin-bottom: 1.5rem;
-        }
+        /* Bio completa en el perfil detallado */
+.detail-bio {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    margin-bottom: 1.5rem;
+    /* Sin límite de líneas */
+    display: block;
+    line-height: 1.6;
+    white-space: pre-line; /* ESPACIADO */
+}
 
         .social-links {
             display: flex;
@@ -435,7 +457,7 @@
 
       /* Insignias de Verificación */
 .badge-container {
-    display: inline-flex;
+    /*display: inline-flex;*/
     align-items: center;
     gap: 0.5rem;
     margin-left: 0.5rem;
@@ -517,18 +539,23 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">🎙️ PortaLand</div>
-            <div class="nav-buttons">
-                <button class="btn btn-secondary">Discord</button>
-                <button class="btn btn-primary">Crear Perfil</button>
-            </div>
+    <!-- Header -->
+<header class="header">
+    <div class="header-content">
+        <div class="logo" onclick="showHome()" style="cursor: pointer;">🎙️ PortaLand</div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="window.open('https://discord.com/invite/srCmgpPkXb', '_blank')">Discord</button>
+            <button class="btn btn-primary" onclick="window.open('TU_LINK_FORMULARIO', '_blank')">Crear Perfil</button>
         </div>
-    </header>
+    </div>
+</header>
     
-<!-- BANNER PAGINA LOCOCHONA -->
-
+    
+    <!-- Home View -->
+    <div class="home-view" id="homeView">
+       
+        
+        <!-- BANNER PAGINA LOCOCHONA -->
         <!-- Banner Carousel -->
 <div class="banner-carousel">
     <div class="carousel-container">
@@ -559,9 +586,7 @@
 </div>
         
 <!-- BANNER PAGINA LOCOCHONA FIN -->
-    
-    <!-- Home View -->
-    <div class="home-view" id="homeView">
+        
         <!-- Search Section -->
         <div class="search-section">
             <input type="text" class="search-bar" id="searchInput" placeholder="Buscar actores de doblaje por nombre...">
@@ -571,14 +596,13 @@
         <div class="filter-section">
             <div class="filter-tags" id="filterTags">
                 <span class="tag active" data-tag="todos">Todos</span>
-                <span class="tag" data-tag="comercial">Comercial</span>
-                <span class="tag" data-tag="narrativo">Narrativo</span>
-                <span class="tag" data-tag="videojuegos">Videojuegos</span>
-                <span class="tag" data-tag="animación">Animación</span>
-                <span class="tag" data-tag="documental">Documental</span>
-                <span class="tag" data-tag="joven">Voz Joven</span>
-                <span class="tag" data-tag="madura">Voz Madura</span>
-                <span class="tag" data-tag="infantil">Voz Infantil</span>
+                <span class="tag" data-tag="femenino">Femenino</span>
+                <span class="tag" data-tag="masculino">Masculino</span>
+                <span class="tag" data-tag="latino">Latino</span>
+                <span class="tag" data-tag="castellano">Castellano</span>
+                <span class="tag" data-tag="coverista">Coverista</span>
+                <span class="tag" data-tag="estudios">Estudios</span>
+
             </div>
         </div>
 
@@ -602,7 +626,7 @@
                 avatar: "https://alertimagenes.netlify.app/images/448867084_1161940135053916_5667009207900683212_n.jpg",
                 // banner: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                 banner: "url('https://alertimagenes.netlify.app/images/tumblr_mxeyejH0J51qc006to1_500.gif')",
-                tags: ["comercial", "animación", "joven"],
+                tags: ["femenino", "latino", "coverista"],
                 socials: {
                     twitter: "https://twitter.com/mariagonzalez",
                     instagram: "https://instagram.com/mariagonzalez",
@@ -624,59 +648,58 @@
                 ],
             badges: [
             {
-                icon: "https://i.imgur.com/example1.png",
+                icon: "https://i.imgur.com/h4ebuGz_d.webp?maxwidth=760&fidelity=grand",
                 tooltip: "Actor de Doblaje Oficial"
             },
-            {
-                icon: "https://i.imgur.com/example2.png",
-                tooltip: "Verificado por VoiceHub"
-            }
+            // {
+               // icon: "https://i.imgur.com/example2.png",
+                //tooltip: "Verificado por VoiceHub"
+            //}
         ],
             },
             // COPIAR DESDE AQUI
             {
                 id: 2,
-                name: "Carlos Rodríguez",
-                bio: "Especialista en videojuegos y narrativa con 10 años de experiencia",
-                avatar: "https://i.pravatar.cc/150?img=12",
-                banner: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-                tags: ["videojuegos", "narrativo", "madura"],
+                name: "Gerzolive",
+                bio: "-Pasen Chamba -Si no respondo es porque me dormi xd",
+                avatar: "https://files.catbox.moe/n3u9qf.gif",
+                // banner: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                banner: "url('https://files.catbox.moe/e25lt6.gif')",
+                tags: ["masculino", "latino"],
                 socials: {
-                    twitter: "https://twitter.com/carlosrodriguez",
-                    linkedin: "https://linkedin.com/in/carlosrodriguez"
+                    tiktok: "https://www.tiktok.com/@gerzolive",
+                    instagram: "https://www.instagram.com/gerzolive",
+                    youtube: "https://www.youtube.com/@Gerzolive",
+                    whatsapp: "https://whatsapp.com/channel/0029Vb6r1rl8PgsDi17FzW1m",
                 },
                 portfolio: [
                     {
                         type: "youtube",
-                        url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                        title: "Demo Narrativo",
-                        description: "Audiolibros y documentales"
+                        url: "https://www.youtube.com/embed/qz4HDx40QpE",
+                        title: "Demo Reel Fandubs",
+                        description: "Demo Reel de Gerzolive (Gerzodubs)"
                     },
-                    {
-                        type: "youtube",
-                        url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                        title: "Videojuego AAA",
-                        description: "Personaje principal en videojuego de acción"
-                    }
+                    
                 ]
             },
            // COPIAR DESDE AQUI
             {
                 id: 3,
-                name: "Ana Martínez",
-                bio: "Voz versátil para documentales, comerciales y contenido educativo",
-                avatar: "https://i.pravatar.cc/150?img=5",
-                banner: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-                tags: ["documental", "comercial", "narrativo"],
+                name: "Basil",
+                bio: "Soy Basil, Fanduber apasionada por el doblaje y la interpretación de voces. Disfruto especialmente dar vida a villanas intensas, así como a personajes tiernos y juveniles, mostrando un rango que va de lo oscuro y dramático a lo dulce y enérgico gracias a mi versatilidad. \n\n Aunque no soy profesional, Hago todo con pasión y entrego la mejor calidad que puedo aportar. \n\n (Consejo De Un Director De Basil: Fijarse en tus fortalezas, Tratar de ir variando un poco el mood en la llamada y/o dirección porque la dirección ultra seria no funciona contigo, Así que nada de sandeces porque tu vas a pasarlo bien y sería bueno que el o ella tengan ese gustito por dirigir en buena onda porque entras más en confianza y por tanto tus fortalezas salen a flote sin necesidad de forzar o presionar, Y por sobre todo, No tener miedo a decirte que es lo que tienes que hacer ni tampoco tener miedo a escucharte porque lo que dices no va personal si no que eres una chica muy honesta y a veces eso puede ser tomado como mala onda, Pero mientras sepan que no VA CON ESA INTENCIÓN todo fluirá como el agua. )",
+                avatar: "https://files.catbox.moe/vskcj3.png",
+                // banner: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+                banner: "url('https://files.catbox.moe/lzc32v.png')",
+                tags: ["femenino", "latino", "coverista"],
                 socials: {
-                    twitter: "https://twitter.com/anamartinez",
-                    instagram: "https://instagram.com/anamartinez",
-                    website: "https://anamartinez.com"
+                    twitter: "https://x.com/Basil_Doblaje",
+                    instagram: "https://www.instagram.com/basil_buho/?hl=en",
+                    tiktok: "https://www.tiktok.com/@basil_"
                 },
                 portfolio: [
                     {
                         type: "youtube",
-                        url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                        url: "https://www.youtube.com/embed/2qp6dQ3gnCw",
                         title: "Documental Naturaleza",
                         description: "Narración para documental de vida silvestre"
                     }
@@ -684,30 +707,50 @@
             },
             {
                 id: 4,
-                name: "Luis Fernández",
-                bio: "Actor de doblaje infantil y juvenil, voces de personajes animados",
-                avatar: "https://i.pravatar.cc/150?img=8",
-                banner: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-                tags: ["animación", "infantil", "joven"],
+                name: "Yahir Barrero (Riiyahir)",
+                bio: "Actor y Locutor Méxicano de 22 años, egresado de la Lic.en ciencias de la comunicación, con voz versatil de tipo Baritono. \n Me reporto para cualquier tipo de trabajo.",
+                avatar: "https://files.catbox.moe/1vx5su.png",
+                banner: "url('https://files.catbox.moe/4lwe40.png')",
+                // banner: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                tags: ["masculino", "latino"],
                 socials: {
-                    youtube: "https://youtube.com/@luisfernandez",
-                    instagram: "https://instagram.com/luisfernandez"
+                    instagram: "https://www.instagram.com/riiyahir/"
                 },
                 portfolio: [
                     {
                         type: "youtube",
-                        url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                        title: "Personaje Infantil",
-                        description: "Voz principal en serie para niños"
+                        url: "https://www.youtube.com/embed/CYfcAKAjD-k",
+                        title: "Demo Reel de Doblaje - Yahir Barrero (El Rihay) 2024",
+                        description: "Esta es una demo de todo lo que hice o parte de ello en 2024"
                     },
+                   
+                ]
+            },
+            // 6 id 
+            {
+                id: 6,
+                name: "Neverland Studios",
+                bio: "Estudio de Fan Doblaje encaminado a ser un estudio profesional.",
+                avatar: "https://files.catbox.moe/ax22do.png",
+                // banner: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                banner: "url('https://files.catbox.moe/1zemuq.png')",
+                tags: ["estudios"],
+                socials: {
+                    tiktok: "https://www.tiktok.com/@neverlandfandub",
+                    instagram: "https://www.instagram.com/neverlandfandub",
+                    youtube: "https://www.youtube.com/@neverlandfandub",
+                },
+                portfolio: [
                     {
                         type: "youtube",
-                        url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                        title: "Demo Reel 2024",
-                        description: "Compilación de trabajos recientes"
-                    }
+                        url: "https://www.youtube.com/embed/qz4HDx40QpE",
+                        title: "Demo Reel Fandubs",
+                        description: "Demo Reel de Gerzolive (Gerzodubs)",
+                    },
+                    
                 ]
-            }
+            },
+
         ];
 
         let currentFilter = 'todos';
@@ -724,12 +767,24 @@
 
             grid.innerHTML = filteredUsers.map(user => `
                 <div class="profile-card" onclick="showProfile(${user.id})">
-                    <div class="profile-banner" style="background: ${user.banner}">
+                    <div class="profile-banner" style="background: ${user.banner}; background-size: cover; background-position: center; background-repeat: no-repeat;">
                         <img src="${user.avatar}" alt="${user.name}" class="profile-avatar">
                     </div>
                     <div class="profile-content">
-                        <h3 class="profile-name">${user.name}</h3>
-                        <p class="profile-bio">${user.bio}</p>
+<div class="profile-name-wrapper">
+    <h3 class="profile-name">${user.name}</h3>
+    ${user.badges ? `
+        <div class="badge-container">
+            ${user.badges.map(badge => `
+                <span class="badge">
+                    <img src="${badge.icon}" alt="${badge.tooltip}">
+                    <span class="badge-tooltip">${badge.tooltip}</span>
+                </span>
+            `).join('')}
+        </div>
+    ` : ''}
+</div>
+                         <p class="profile-bio">${user.bio}</p>
                         <div class="profile-tags">
                             ${user.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join('')}
                         </div>
@@ -761,12 +816,24 @@
             `).join('');
 
             detail.innerHTML = `
-                <div class="detail-banner" style="background: ${user.banner}">
+                <div class="detail-banner" style="background: ${user.banner}; background-size: cover; background-position: center; background-repeat: no-repeat;">
                     <button class="back-button" onclick="showHome()">← Volver</button>
                     <img src="${user.avatar}" alt="${user.name}" class="detail-avatar">
                 </div>
                 <div class="detail-info">
-                    <h1 class="detail-name">${user.name}</h1>
+                    <div class="detail-name-wrapper">
+    <h1 class="detail-name">${user.name}</h1>
+    ${user.badges ? `
+        <div class="badge-container">
+            ${user.badges.map(badge => `
+                <span class="badge">
+                    <img src="${badge.icon}" alt="${badge.tooltip}">
+                    <span class="badge-tooltip">${badge.tooltip}</span>
+                </span>
+            `).join('')}
+        </div>
+    ` : ''}
+</div>
                     <p class="detail-bio">${user.bio}</p>
                     <div class="profile-tags">
                         ${user.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join('')}
@@ -784,31 +851,47 @@
             `;
 
             // Cambiar URL sin recargar la página
-            const userName = user.name.toLowerCase().replace(/\s+/g, '');
-            history.pushState({userId: user.id}, '', `/c/${userName}`);
-            
-            document.getElementById('homeView').classList.add('hidden');
-            document.getElementById('detailView').classList.remove('hidden');
-            window.scrollTo(0, 0);
+            // Cambiar URL sin recargar la página
+const userName = user.name.toLowerCase().replace(/\s+/g, '');
+history.pushState({userId: user.id}, '', `/c/${userName}`);
+
+document.getElementById('homeView').classList.add('hidden');
+document.getElementById('detailView').classList.remove('hidden');
+const bannerCarousel = document.querySelector('.banner-carousel');
+if (bannerCarousel) {
+    bannerCarousel.classList.add('hidden');
+}
+window.scrollTo(0, 0);
         }
 
         // Volver a home
+// Volver a home
         function showHome() {
             history.pushState({}, '', '/');
             document.getElementById('detailView').classList.add('hidden');
             document.getElementById('homeView').classList.remove('hidden');
+            const bannerCarousel = document.querySelector('.banner-carousel');
+            if (bannerCarousel) {
+                bannerCarousel.classList.remove('hidden');
+            }
             window.scrollTo(0, 0);
         }
 
         // Manejar navegación con botones del navegador
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.userId) {
-                showProfile(event.state.userId);
-            } else {
-                document.getElementById('detailView').classList.add('hidden');
-                document.getElementById('homeView').classList.remove('hidden');
-            }
-        });
+
+        // Manejar navegación con botones del navegador
+window.addEventListener('popstate', function(event) {
+    if (event.state && event.state.userId) {
+        showProfile(event.state.userId);
+   } else {
+    document.getElementById('detailView').classList.add('hidden');
+    document.getElementById('homeView').classList.remove('hidden');
+    const bannerCarousel = document.querySelector('.banner-carousel');
+    if (bannerCarousel) {
+        bannerCarousel.classList.remove('hidden');
+    }
+}
+});
 
         // Event listeners para filtros
         document.querySelectorAll('.tag').forEach(tag => {
@@ -856,6 +939,34 @@ function goToSlide(index) {
 
 // Cambiar slide cada 5 segundos
 setInterval(nextSlide, 5000);
+
+        // RECARGA SIN MENSAJES DE ERROR ABIR
+
+// Detectar y cargar perfil desde URL al cargar la página
+window.addEventListener('DOMContentLoaded', function() {
+    const path = window.location.pathname;
+    
+    // Si la URL es /c/nombre-usuario
+    if (path.startsWith('/c/')) {
+        const userName = path.replace('/c/', '').toLowerCase();
+        
+        // Buscar el usuario que coincida con el nombre en la URL
+        const user = users.find(u => {
+            const userSlug = u.name.toLowerCase().replace(/\s+/g, '');
+            return userSlug === userName;
+        });
+        
+        if (user) {
+            // Si encontramos el usuario, mostrar su perfil
+            showProfile(user.id);
+        } else {
+            // Si no existe, mostrar página de inicio
+            console.log('Usuario no encontrado, mostrando inicio');
+            showHome();
+        }
+    }
+});
+        
     </script>
 </body>
 </html>
