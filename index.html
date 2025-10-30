@@ -328,7 +328,48 @@
             font-weight: 700;
             margin-bottom: 1rem;
         }
+/*OTRO INICIO */
+/* Globo de texto en perfil detallado */
+.detail-speech-bubble {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(42, 42, 58, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    max-width: 300px;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-in-out;
+}
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-speech-bubble-text {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.detail-speech-bubble-date {
+    color: #888;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+        
         /* Bio completa en el perfil detallado */
 .detail-bio {
     font-size: 1.1rem;
@@ -878,10 +919,16 @@
             `).join('');
 
             detail.innerHTML = `
-                <div class="detail-banner" style="background: ${user.banner}; background-size: cover; background-position: center; background-repeat: no-repeat;">
-                    <button class="back-button" onclick="showHome()">← Volver</button>
-                    <img src="${user.avatar}" alt="${user.name}" class="detail-avatar">
-                </div>
+    <div class="detail-banner" style="background: ${user.banner}; background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <button class="back-button" onclick="showHome()">← Volver</button>
+        ${user.speechBubble ? `
+            <div class="detail-speech-bubble">
+                <p class="detail-speech-bubble-text">${user.speechBubble.text}</p>
+                <span class="detail-speech-bubble-date">${user.speechBubble.date}</span>
+            </div>
+        ` : ''}
+        <img src="${user.avatar}" alt="${user.name}" class="detail-avatar">
+    </div>
                 <div class="detail-info">
                     <div class="detail-name-wrapper">
     <h1 class="detail-name">${user.name}</h1>
